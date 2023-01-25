@@ -1,4 +1,4 @@
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import UserService from '../services/UserService';
 import UserValidations from '../validations/userValidations';
 import { validateToken } from '../utils/Jwt';
@@ -27,11 +27,16 @@ export default class UserController {
   public validateToken = async (
     req: Request,
     res: Response,
+    next: NextFunction,
   ) => {
-    const { authorization } = req.headers;
-    if (authorization) {
-      const user = validateToken(authorization);
-      return res.status(200).json({ role: user.role });
+    try {
+      const { authorization } = req.headers;
+      if (authorization) {
+        const user = validateToken(authorization);
+        return res.status(200).json({ role: user.role });
+      }
+    } catch (error) {
+      next(error);
     }
   };
 }
