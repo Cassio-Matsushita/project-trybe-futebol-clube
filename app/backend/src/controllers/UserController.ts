@@ -18,7 +18,7 @@ export default class UserController {
     if (!UserValidations.validateUser(email, password)) {
       return res.status(401).json({ message: 'Incorrect email or password' });
     }
-    // const result = await this.userService.create({ email, password });
+
     const { status, token, error } = await this.userService.createToken(req.body);
 
     return error ? res.status(status).json(error) : res.status(status).json(token);

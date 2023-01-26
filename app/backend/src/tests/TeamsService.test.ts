@@ -19,12 +19,12 @@ describe('Teste o TeamsService', function() {
 
     it('Teste o retorno do findAll', async function() {
 
-        sinon.stub(TeamsModel, 'findAll').resolves();
+        sinon.stub(TeamsModel, 'findAll').resolves(teams as unknown as TeamsModel[]);
 
         const response = await chai.request(app).get('/teams');
 
         expect(response.status).to.be.equal(200);
-        // expect(response.).to.be.equal(teams);
+        expect(response.body).deep.equal(teams);
     });
 
     it('Teste o retorno do findOne', async function() {

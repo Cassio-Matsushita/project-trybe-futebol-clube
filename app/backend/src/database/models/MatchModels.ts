@@ -21,7 +21,7 @@ MatchesModel.init({
   homeTeamId: {
     type: INTEGER,
   },
-  homeTeamsGoals: {
+  homeTeamGoals: {
     type: INTEGER,
   },
   awayTeamId: {
