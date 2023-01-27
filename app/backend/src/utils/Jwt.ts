@@ -13,12 +13,13 @@ export const createToken = (user: IUserToken) => {
 };
 
 export const validateToken = (token: string) => {
-  try {
-    const result = verify(token, process.env.JWT_SECRET as Secret);
+  const result = verify(token, process.env.JWT_SECRET as Secret);
 
-    return result as IUserToken;
-  } catch (error) {
-    const e = new Error('Expired or invalid token');
-    throw e;
-  }
+  // if (!result) {
+  //   return { status: 401, message: 'Token must be a valid token' };
+  // const e = new Error('Token must be a valid token');
+  // throw e.status;
+  // }
+  return result as IUserToken;
+  // return { status: 401, message: 'Token must be a valid token' };
 };

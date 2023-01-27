@@ -1,5 +1,6 @@
 import TeamsModel from '../database/models/TeamsModel';
 import MatchModels from '../database/models/MatchModels';
+import IBodyInsertMatches from '../interfaces/IInsertMatches';
 
 export default class MatchesRepository {
   public getAll = async () => {
@@ -22,6 +23,18 @@ export default class MatchesRepository {
       { model: TeamsModel, as: 'homeTeam', attributes: ['teamName'] },
       { model: TeamsModel, as: 'awayTeam', attributes: ['teamName'] },
     ],
+    });
+    return matches;
+  };
+
+  public saveMatch = async (data: IBodyInsertMatches) => {
+    const matches = await MatchModels.create({ ...data, inProgress: true });
+    return matches;
+  };
+
+  public updateMatch = async (id: number) => {
+    const matches = await MatchModels.update({ inProgress: false }, {
+      where: { id },
     });
     return matches;
   };

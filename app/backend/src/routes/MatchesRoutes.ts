@@ -10,5 +10,7 @@ const service = new MatchesService(repository);
 const controller = new MatchesController(service);
 
 router.get('/', controller.getAllMatches);
+router.post('/', controller.verifyTeams, controller.saveMatches);
+router.patch('/:id/finish', controller.updateMatch);
 
 export default router;
