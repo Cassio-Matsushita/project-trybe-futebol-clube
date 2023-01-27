@@ -23,4 +23,10 @@ export default class MatchesService {
     const matches = await this.matchesRepository.updateMatch(id);
     return matches;
   };
+
+  public updateMatchResult = async (id: number, homeTeamGoals: string, awayTeamGoals: string) => {
+    const matches = await this.matchesRepository
+      .updateMatchResult(id, homeTeamGoals, awayTeamGoals);
+    return matches;
+  };
 }

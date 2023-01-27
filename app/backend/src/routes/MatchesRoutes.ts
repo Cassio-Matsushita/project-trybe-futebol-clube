@@ -11,6 +11,7 @@ const controller = new MatchesController(service);
 
 router.get('/', controller.getAllMatches);
 router.post('/', controller.verifyTeams, controller.saveMatches);
+router.patch('/:id', controller.updateMatchResult);
 router.patch('/:id/finish', controller.updateMatch);
 
 export default router;

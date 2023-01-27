@@ -14,7 +14,7 @@ describe('Teste o model de Match', function () {
 
   it('possui a propriedade "homeTeamsGoals"', function () {
     const matches = new MatchesModel();
-    expect(matches).property('homeTeamsGoals');
+    expect(matches).property('homeTeamGoals');
   });
 
   it('possui a propriedade "awayTeamId"', function () {

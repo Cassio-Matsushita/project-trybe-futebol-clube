@@ -38,4 +38,11 @@ export default class MatchesRepository {
     });
     return matches;
   };
+
+  public updateMatchResult = async (id: number, homeTeamGoals: string, awayTeamGoals: string) => {
+    const matches = await MatchModels.update({ homeTeamGoals, awayTeamGoals }, {
+      where: { id },
+    });
+    return matches;
+  };
 }

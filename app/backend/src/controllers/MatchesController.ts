@@ -30,7 +30,7 @@ export default class MatchesController {
     try {
       const { homeTeamId, awayTeamId } = req.body;
       const result = await verifyTeams(Number(homeTeamId), Number(awayTeamId));
-      // console.log(result);
+
       if (result) {
         return res.status(result.status).json({ message: result.message });
       }
@@ -62,8 +62,24 @@ export default class MatchesController {
   public updateMatch = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const { id } = req.params;
+
       const result = await this.matchesService.updateMatch(Number(id));
       return res.status(200).json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  public updateMatchResult = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+
+      if (homeTeamGoals && awayTeamGoals) {
+        const result = await this.matchesService
+          .updateMatchResult(Number(id), homeTeamGoals, awayTeamGoals);
+        return res.status(200).json(result);
+      }
     } catch (error) {
       next(error);
     }
