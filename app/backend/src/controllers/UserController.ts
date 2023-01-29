@@ -31,7 +31,6 @@ export default class UserController {
   ) => {
     try {
       const { authorization } = req.headers;
-      console.log(authorization);
       if (authorization) {
         const user = validateToken(authorization);
 
