@@ -1,4 +1,4 @@
-# Boas vindas ao repositório do Trybe Futebol Clube!
+# Boas vindas ao projeto Trybe Futebol Clube!
 
 O `TFC` é um site informativo sobre partidas e classificações de futebol! ⚽️
 
